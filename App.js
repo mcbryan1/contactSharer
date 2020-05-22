@@ -11,21 +11,41 @@ import Register from "./screens/Register";
 const Stack = createStackNavigator();
 export default function App() {
   return (
-      <NavigationContainer style={styles.container}>
-        <Stack.Navigator initialRouteName={GetStarted}>
-          <Stack.Screen
-            options={{
-              headerTitle: null,
-              headerStyle: { height: 0 },
-            }}
-            name="Get Started"
-            component={GetStarted}
-          />
-          <Stack.Screen name="Home Page" component={HomePage} />
-          <Stack.Screen name="Sign in" component={Signin} />
-          <Stack.Screen name="Register" component={Register} />
-        </Stack.Navigator>
-      </NavigationContainer>
+    <NavigationContainer style={styles.container}>
+      <Stack.Navigator initialRouteName={GetStarted}>
+        <Stack.Screen
+          options={{
+            headerTitle: null,
+            headerStyle: { height: 0 },
+          }}
+          name="Get Started"
+          component={GetStarted}
+        />
+        <Stack.Screen
+          options={{
+            headerTitle: null,
+            headerStyle: { height: 0 },
+          }}
+          name="Home Page"
+          component={HomePage}
+        />
+        <Stack.Screen
+          options={{
+            
+            headerTitleAlign: "center",
+            headerTintColor: 'whitesmoke',
+            headerStyle: { 
+              backgroundColor: '#f7027d',
+              height: 100,
+             }, 
+             title: 'Register',
+          }}
+          name="Register"
+          component={Register}
+        />
+        <Stack.Screen name="Sign in" component={Signin} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

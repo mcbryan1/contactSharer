@@ -39,11 +39,11 @@ const styles = StyleSheet.create({
   },
   contact__text__container: {
     alignItems: "center",
-    marginBottom: 150,
+    marginBottom: 200,
   },
   contact__text: {
     color: "whitesmoke",
-    fontSize: 30,
+    fontSize: 35,
     fontWeight: "bold",
     letterSpacing: 4,
   },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     letterSpacing: 4,
-    borderBottomWidth: 10,
-    borderBottomColor: 'red'
+    borderBottomWidth: 8,
+    borderBottomColor: '#f7027d'
   }
 });
