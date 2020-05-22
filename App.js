@@ -34,20 +34,37 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: "bold",
               fontSize: 25,
-              letterSpacing: 3,
+              letterSpacing: 4,
             },
             headerTitleAlign: "center",
-            headerTintColor: 'whitesmoke',
-            headerStyle: { 
-              backgroundColor: '#f7027d',
+            headerTintColor: "whitesmoke",
+            headerStyle: {
+              backgroundColor: "#f7027d",
               height: 100,
-             }, 
-             title: 'Register',
+            },
+            title: "Register",
           }}
           name="Register"
           component={Register}
         />
-        <Stack.Screen name="Sign in" component={Signin} />
+        <Stack.Screen
+          options={{
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 25,
+              letterSpacing: 4,
+            },
+            headerTitleAlign: "center",
+            headerTintColor: "whitesmoke",
+            headerStyle: {
+              backgroundColor: "#f7027d",
+              height: 100,
+            },
+            title: "Sign In",
+          }}
+          name="Sign in"
+          component={Signin}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

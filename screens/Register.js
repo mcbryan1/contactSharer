@@ -1,89 +1,95 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View, Image } from "react-native";
 import { Entypo } from "@expo/vector-icons";
-import { TouchableOpacity, TextInput } from "react-native-gesture-handler";
+import {
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+} from "react-native-gesture-handler";
 
 export default class Register extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.add__user}>
-          <TouchableOpacity style={styles.overlay__text}>
-            <Entypo
-              name="add-user"
-              size={100}
-              color="white"
-              style={styles.icon}
+      <ScrollView >
+        <View style={styles.container}>
+          <View style={styles.add__user}>
+            <TouchableOpacity style={styles.overlay__text}>
+              <Entypo
+                name="add-user"
+                size={100}
+                color="white"
+                style={styles.icon}
+              />
+              <Text style={styles.overlay__text__text}>ADD PROFILE PHOTO</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.input__container}>
+            <Text style={styles.label}>Full Name</Text>
+            <TextInput
+              placeholder="Eg. John Doe"
+              placeholderTextColor="#aaaaaa"
+              style={styles.input}
+              textAlign="right"
             />
-            <Text style={styles.overlay__text__text}>ADD PROFILE PHOTO</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.input__container}>
-          <Text style={styles.label}>Full Name</Text>
-          <TextInput
-            placeholder="Eg. John Doe"
-            placeholderTextColor="#aaaaaa"
-            style={styles.input}
-            textAlign="right"
-          />
-        </View>
+          </View>
 
-        <View style={styles.input__container}>
-          <Text style={styles.label}>Email</Text>
-          <TextInput
-            placeholder="Eg. some0ne@example.com"
-            placeholderTextColor="#aaaaaa"
-            style={styles.input}
-            textAlign="right"
-          />
-        </View>
+          <View style={styles.input__container}>
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              placeholder="someone@example.com"
+              placeholderTextColor="#aaaaaa"
+              style={styles.input}
+              textAlign="right"
+            />
+          </View>
 
-        <View style={styles.input__container}>
-          <Text style={styles.label}>Phone Number</Text>
-          <TextInput
-            placeholder="Eg. +233000000000"
-            placeholderTextColor="#aaaaaa"
-            style={styles.input}
-            textAlign="right"
-          />
-        </View>
+          <View style={styles.input__container}>
+            <Text style={styles.label}>Phone Number</Text>
+            <TextInput
+              placeholder="+233000000000"
+              placeholderTextColor="#aaaaaa"
+              style={styles.input}
+              textAlign="right"
+            />
+          </View>
 
-        <View style={styles.input__container}>
-          <Text style={styles.label}>Role</Text>
-          <TextInput
-            placeholder="Eg. Senior Developer"
-            placeholderTextColor="#aaaaaa"
-            style={styles.input}
-            textAlign="right"
-          />
-        </View>
+          <View style={styles.input__container}>
+            <Text style={styles.label}>Role</Text>
+            <TextInput
+              placeholder="Senior Developer"
+              placeholderTextColor="#aaaaaa"
+              style={styles.input}
+              textAlign="right"
+            />
+          </View>
 
-        <View style={styles.input__container}>
-          <Text style={styles.label}>Twitter</Text>
-          <TextInput
-            placeholder="Eg. @username"
-            placeholderTextColor="#aaaaaa"
-            style={styles.input}
-            textAlign="right"
-          />
-        </View>
+          <View style={styles.input__container}>
+            <Text style={styles.label}>Twitter</Text>
+            <TextInput
+              placeholder="@username"
+              placeholderTextColor="#aaaaaa"
+              style={styles.input}
+              textAlign="right"
+            />
+          </View>
 
-        <View style={styles.input__container}>
-          <Text style={styles.label}>LinkedIn</Text>
-          <TextInput
-            placeholder="Eg. /username"
-            placeholderTextColor="#aaaaaa"
-            style={styles.input}
-            textAlign="right"
-          />
-        </View>
+          <View style={styles.input__container}>
+            <Text style={styles.label}>LinkedIn</Text>
+            <TextInput
+              placeholder="/username"
+              placeholderTextColor="#aaaaaa"
+              style={styles.input}
+              textAlign="right"
+            />
+          </View>
 
-        <View style={styles.button__container}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.button__text}>Register</Text>
-          </TouchableOpacity>
+          <View style={styles.button__container}>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.button__text}>Register</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -125,11 +131,11 @@ const styles = StyleSheet.create({
   },
   input: {
     color: "#f7027d",
-    fontSize: 15,
+    fontSize: 13,
   },
   label: {
     color: "whitesmoke",
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "bold",
     letterSpacing: 2,
   },
@@ -139,8 +145,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     paddingHorizontal: 90,
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
+    textTransform: "uppercase",
+    fontWeight: "bold",
     letterSpacing: 3,
   },
   button__container: {
@@ -149,6 +155,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#f7027d",
+    marginBottom: 42,
     elevation: 10,
   },
 });
