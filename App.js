@@ -7,6 +7,10 @@ import GetStarted from "./screens/GetStarted";
 import HomePage from "./screens/HomePage";
 import Signin from "./screens/Signin";
 import Register from "./screens/Register";
+import QRcode from "./screens/QRcode";
+
+
+
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -65,6 +69,7 @@ export default function App() {
           name="Sign in"
           component={Signin}
         />
+        <Stack.Screen name="QRcode" component={QRcode}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
