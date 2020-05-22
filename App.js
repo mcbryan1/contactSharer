@@ -31,7 +31,11 @@ export default function App() {
         />
         <Stack.Screen
           options={{
-            
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 25,
+              letterSpacing: 3,
+            },
             headerTitleAlign: "center",
             headerTintColor: 'whitesmoke',
             headerStyle: { 
