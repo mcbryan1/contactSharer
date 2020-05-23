@@ -13,6 +13,9 @@ import logo from "./assets/images/logo.png";
 import QRcodeScanner from "./screens/QRcodeScanner";
 import UserDetails from "./screens/UserDetails";
 import Switcher from "./components/Switcher";
+import OtherUserDetails from './screens/OtherUserDetails'
+
+
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -119,6 +122,24 @@ export default function App() {
           }}
           name="UserDetails"
           component={UserDetails}
+        />
+        <Stack.Screen
+          options={{
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 20,
+              letterSpacing: 1,
+            },
+            headerTitleAlign: "center",
+            headerTintColor: "whitesmoke",
+            headerStyle: {
+              backgroundColor: "#f7027d",
+              height: 100,
+            },
+            title: "My Profile",
+          }}
+          name="OtherUserDetails"
+          component={OtherUserDetails}
         />
       </Stack.Navigator>
     </NavigationContainer>
