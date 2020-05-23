@@ -136,7 +136,7 @@ export default function App() {
               backgroundColor: "#f7027d",
               height: 100,
             },
-            title: "My Profile",
+            title: "Member Profile",
           }}
           name="OtherUserDetails"
           component={OtherUserDetails}
