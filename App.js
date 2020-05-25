@@ -75,31 +75,9 @@ export default function App() {
           component={Signin}
         />
         <Stack.Screen
-          options={{
-            headerTintColor: "#fff",
-            headerTitleAlign: "center",
-            headerStyle: {
-              backgroundColor: "#000",
-              height: 100,
-            },
-            headerTitleStyle: {
-              fontWeight: "bold",
-              fontSize: 25,
-            },
-            headerTitle: () => {
-              return (
-                <View>
-                  <Image source={logo} style={styles.image} />
-                </View>
-              );
-            },
-            headerRight: () => {
-              return (
-                <View>
-                  <Switcher />
-                </View>
-              );
-            },
+         options={{
+            headerTitle: null,
+            headerStyle: { height: 0 },
           }}
           name="QRcode"
           component={QRcode}

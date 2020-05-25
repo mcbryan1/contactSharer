@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { Text, StyleSheet, View, Image } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 import person from "../assets/images/man1.jpg";
+import logo from "../assets/images/logo.png";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { AntDesign } from "@expo/vector-icons";
 
 export default class QRcode extends Component {
   render() {
@@ -10,6 +12,25 @@ export default class QRcode extends Component {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
+        <View style={styles.header__top}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Sign in");
+            }}
+          >
+            <AntDesign name="arrowleft" size={24} color="white" />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image source={logo} style={styles.logo} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("UserDetails");
+            }}
+          >
+            <AntDesign name="user" size={24} color="white" />
+          </TouchableOpacity>
+        </View>
         <View style={styles.text__container}>
           <Text style={styles.text__1}>Exchange Contact Information</Text>
           <Text style={styles.text__2}>
@@ -26,14 +47,20 @@ export default class QRcode extends Component {
             backgroundColor="black"
           />
         </View>
-        <TouchableOpacity onPress={() => {navigation.navigate("UserDetails")}}>
-        <View style={styles.contact__container}>
-          <Image source={person} style={styles.person__image} />
-          <View style={styles.person__details}>
-            <Text style={styles.person__details__text1}>Leonardo da Vinci</Text>
-            <Text style={styles.person__details__text2}>Senior Painter</Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("UserDetails");
+          }}
+        >
+          <View style={styles.contact__container}>
+            <Image source={person} style={styles.person__image} />
+            <View style={styles.person__details}>
+              <Text style={styles.person__details__text1}>
+                Leonardo da Vinci
+              </Text>
+              <Text style={styles.person__details__text2}>Senior Painter</Text>
+            </View>
           </View>
-        </View>
         </TouchableOpacity>
         <View style={styles.footer}>
           <Text style={styles.footer__text1}>
@@ -41,7 +68,9 @@ export default class QRcode extends Component {
           </Text>
           <TouchableOpacity
             style={styles.footer__button}
-            onPress={() => alert("QR Code Scanner Not Done")}
+            onPress={() => {
+              navigation.navigate("QRcodeScanner");
+            }}
           >
             <Text style={styles.footer__text2}>Scan QR</Text>
           </TouchableOpacity>
@@ -56,6 +85,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
     flex: 1,
     flexDirection: "column",
+  },
+  logo: {
+    height: 35,
+    width: 200,
+  },
+  header__top: {
+    marginVertical: 30,
+    marginHorizontal: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   qrcode__container: {
     alignItems: "center",

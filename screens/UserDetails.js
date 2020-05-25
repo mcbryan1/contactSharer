@@ -66,13 +66,6 @@ export default class UserDetails extends Component {
             <Text style={styles.main__details__text}>Rome, Italy</Text>
           </View>
         </View>
-        <View style={styles.tag}>
-            <TouchableOpacity onPress={() => {
-                navigation.navigate("OtherUserDetails");
-              }}>
-            <AntDesign name="tag" size={24} color="white" />
-            </TouchableOpacity>
-        </View>
       </View>
     );
   }
