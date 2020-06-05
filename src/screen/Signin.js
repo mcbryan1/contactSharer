@@ -6,14 +6,37 @@ import {
   ScrollView,
 } from "react-native-gesture-handler";
 import image from "../assets/images/signup.jpg";
+import { connect } from "react-redux";
+import { loginForm } from "../Redux/Actions/authActions";
 
-export default class Signin extends Component {
+class Signin extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      password: "",
+    };
+  }
+
+  handleUpdateState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleOnSubmit = () => {
+    this.props.loginForm(this.state.email, this.state.password);
+  };
   render() {
-    const { navigation } = this.props;
+    const { navigation, auth } = this.props;
     return (
       <ScrollView>
         <View style={styles.container}>
           <Image source={image} style={styles.image} />
+          {auth.error.login && (
+            <Text style={{ color: "red" }}>{auth.error.login}</Text>
+          )}
           <View style={styles.input__container}>
             <Text style={styles.label}>Email</Text>
             <TextInput
@@ -21,6 +44,10 @@ export default class Signin extends Component {
               placeholderTextColor="#aaaaaa"
               style={styles.input}
               textAlign="right"
+              onChangeText={(text) => {
+                this.handleUpdateState("email", text);
+              }}
+              value={this.state.email}
             />
           </View>
 
@@ -32,13 +59,18 @@ export default class Signin extends Component {
               style={styles.input}
               textAlign="right"
               secureTextEntry={true}
+              onChangeText={(text) => {
+                this.handleUpdateState("password", text);
+              }}
+              value={this.state.password}
             />
           </View>
 
           <View style={styles.button__container}>
-            <TouchableOpacity style={styles.button} onPress={() => {
-                navigation.navigate("QRcode");
-              }}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={this.handleOnSubmit}
+            >
               <Text style={styles.button__text}>Sign In</Text>
             </TouchableOpacity>
           </View>
@@ -140,3 +172,8 @@ const styles = StyleSheet.create({
     borderColor: "#f7027d",
   },
 });
+
+const mapStateToProp = (state) => {
+  return { auth: state };
+};
+export default connect(mapStateToProp, { loginForm })(Signin);

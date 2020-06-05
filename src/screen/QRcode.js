@@ -5,20 +5,19 @@ import person from "../assets/images/man1.jpg";
 import logo from "../assets/images/logo.png";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { AntDesign } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { connect } from "react-redux";
+import { logout } from "../Redux/Actions/authActions";
 
-export default class QRcode extends Component {
+class QRcode extends Component {
   render() {
     let base64Logo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAA..";
-    const { navigation } = this.props;
+    const { navigation, logout } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.header__top}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Sign in");
-            }}
-          >
-            <AntDesign name="arrowleft" size={24} color="white" />
+          <TouchableOpacity onPress={logout}>
+            <SimpleLineIcons name="logout" size={24} color="white" />
           </TouchableOpacity>
           <TouchableOpacity>
             <Image source={logo} style={styles.logo} />
@@ -174,3 +173,8 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
 });
+
+const mapStateToProp = (state) => {
+  return { auth: state };
+};
+export default connect(mapStateToProp, { logout })(QRcode);

@@ -2,26 +2,74 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import GetStarted from "../screens/GetStarted";
-import HomePage from "../screens/HomePage";
-import Signin from "../screens/Signin";
-import Register from "../screens/Register";
-import QRcode from "../screens/QRcode";
+import GetStarted from "../screen/GetStarted";
+import HomePage from "../screen/HomePage";
+import Signin from "../screen/Signin";
+import Register from "../screen/Register";
+import QRcode from "../screen/QRcode";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import logo from "../assets/images/logo.png";
-import QRcodeScanner from "../screens/QRcodeScanner";
-import UserDetails from "../screens/UserDetails";
+import QRcodeScanner from "../screen/QRcodeScanner";
+import UserDetails from "../screen/UserDetails";
 import Switcher from "../components/Switcher";
-import OtherUserDetails from '../screens/OtherUserDetails'
-
-
+import OtherUserDetails from "../screen/OtherUserDetails";
+import { connect } from "react-redux";
 
 const Stack = createStackNavigator();
 
-function Navigation() {
+function Navigation({auth}) {
   return (
     <NavigationContainer style={styles.container}>
+    {auth.login ? (
       <Stack.Navigator initialRouteName={GetStarted}>
+        <Stack.Screen
+          options={{
+            headerTitle: null,
+            headerStyle: { height: 0 },
+          }}
+          name="QRcode"
+          component={QRcode}
+        />
+        <Stack.Screen name="QRcodeScanner" component={QRcodeScanner} />
+        <Stack.Screen
+          options={{
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 20,
+              letterSpacing: 1,
+            },
+            headerTitleAlign: "center",
+            headerTintColor: "whitesmoke",
+            headerStyle: {
+              backgroundColor: "#f7027d",
+              height: 100,
+            },
+            title: "My Profile",
+          }}
+          name="UserDetails"
+          component={UserDetails}
+        />
+        <Stack.Screen
+          options={{
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 20,
+              letterSpacing: 1,
+            },
+            headerTitleAlign: "center",
+            headerTintColor: "whitesmoke",
+            headerStyle: {
+              backgroundColor: "#f7027d",
+              height: 100,
+            },
+            title: "Member Profile",
+          }}
+          name="OtherUserDetails"
+          component={OtherUserDetails}
+        />
+        </Stack.Navigator>
+        ) : (
+          <Stack.Navigator>
         <Stack.Screen
           options={{
             headerTitle: null,
@@ -74,57 +122,12 @@ function Navigation() {
           name="Sign in"
           component={Signin}
         />
-        <Stack.Screen
-          options={{
-            headerTitle: null,
-            headerStyle: { height: 0 },
-          }}
-          name="QRcode"
-          component={QRcode}
-        />
-        <Stack.Screen name="QRcodeScanner" component={QRcodeScanner} />
-        <Stack.Screen
-          options={{
-            headerTitleStyle: {
-              fontWeight: "bold",
-              fontSize: 20,
-              letterSpacing: 1,
-            },
-            headerTitleAlign: "center",
-            headerTintColor: "whitesmoke",
-            headerStyle: {
-              backgroundColor: "#f7027d",
-              height: 100,
-            },
-            title: "My Profile",
-          }}
-          name="UserDetails"
-          component={UserDetails}
-        />
-        <Stack.Screen
-          options={{
-            headerTitleStyle: {
-              fontWeight: "bold",
-              fontSize: 20,
-              letterSpacing: 1,
-            },
-            headerTitleAlign: "center",
-            headerTintColor: "whitesmoke",
-            headerStyle: {
-              backgroundColor: "#f7027d",
-              height: 100,
-            },
-            title: "Member Profile",
-          }}
-          name="OtherUserDetails"
-          component={OtherUserDetails}
-        />
       </Stack.Navigator>
+      )}
     </NavigationContainer>
   );
 }
 
-export default Navigation;
 
 const styles = StyleSheet.create({
   container: {
@@ -138,3 +141,8 @@ const styles = StyleSheet.create({
     width: 150,
   },
 });
+
+const mapStateToProp = (state) => {
+  return { auth: state };
+};
+export default connect(mapStateToProp)(Navigation);

@@ -6,23 +6,57 @@ import {
   TextInput,
   ScrollView,
 } from "react-native-gesture-handler";
+import { connect } from "react-redux";
+import { registrationForm, registerError } from "../Redux/Actions/authActions";
 
-export default class Register extends Component {
+class Register extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      email: "",
+      number: "",
+      password: "",
+      confirm: "",
+      role: "",
+      linkedIn: "",
+      twitter: "",
+    };
+  }
+
+  handleUpdateState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleOnSubmit = () => {
+    if (this.state.password !== this.state.confirm) {
+      this.props.registerError("Error (Password Mismatch)");
+      return;
+    }
+    this.props.registrationForm(this.state.email, this.state.password);
+  };
   render() {
+    const { auth } = this.props;
     return (
-      <ScrollView >
+      <ScrollView>
         <View style={styles.container}>
           <View style={styles.add__user}>
             <TouchableOpacity style={styles.overlay__text}>
               <Entypo
                 name="add-user"
-                size={100}
+                size={50}
                 color="white"
                 style={styles.icon}
               />
               <Text style={styles.overlay__text__text}>ADD PROFILE PHOTO</Text>
             </TouchableOpacity>
           </View>
+          {auth.error.register && (
+            <Text style={{ color: "red" }}>{auth.error.register}</Text>
+          )}
           <View style={styles.input__container}>
             <Text style={styles.label}>Full Name</Text>
             <TextInput
@@ -30,6 +64,10 @@ export default class Register extends Component {
               placeholderTextColor="#aaaaaa"
               style={styles.input}
               textAlign="right"
+              onChangeText={(text) => {
+                this.handleUpdateState("name", text);
+              }}
+              value={this.state.fullname}
             />
           </View>
 
@@ -40,6 +78,10 @@ export default class Register extends Component {
               placeholderTextColor="#aaaaaa"
               style={styles.input}
               textAlign="right"
+              onChangeText={(text) => {
+                this.handleUpdateState("email", text);
+              }}
+              value={this.state.email}
             />
           </View>
 
@@ -50,6 +92,10 @@ export default class Register extends Component {
               placeholderTextColor="#aaaaaa"
               style={styles.input}
               textAlign="right"
+              onChangeText={(text) => {
+                this.handleUpdateState("number", text);
+              }}
+              value={this.state.number}
             />
           </View>
 
@@ -60,6 +106,10 @@ export default class Register extends Component {
               placeholderTextColor="#aaaaaa"
               style={styles.input}
               textAlign="right"
+              onChangeText={(text) => {
+                this.handleUpdateState("role", text);
+              }}
+              value={this.state.role}
             />
           </View>
 
@@ -70,6 +120,10 @@ export default class Register extends Component {
               placeholderTextColor="#aaaaaa"
               style={styles.input}
               textAlign="right"
+              onChangeText={(text) => {
+                this.handleUpdateState("twitter", text);
+              }}
+              value={this.state.twitter}
             />
           </View>
 
@@ -80,11 +134,45 @@ export default class Register extends Component {
               placeholderTextColor="#aaaaaa"
               style={styles.input}
               textAlign="right"
+              onChangeText={(text) => {
+                this.handleUpdateState("linkedIn", text);
+              }}
+              value={this.state.linkedIn}
             />
           </View>
-
+          <View style={styles.input__container}>
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              placeholderTextColor="#aaaaaa"
+              placeholder="Password"
+              style={styles.input}
+              textAlign="right"
+              secureTextEntry={true}
+              onChangeText={(text) => {
+                this.handleUpdateState("password", text);
+              }}
+              value={this.state.password}
+            />
+          </View>
+          <View style={styles.input__container}>
+            <Text style={styles.label}>Confirm Password</Text>
+            <TextInput
+              placeholderTextColor="#aaaaaa"
+              placeholder="Repeat Password"
+              style={styles.input}
+              textAlign="right"
+              secureTextEntry={true}
+              onChangeText={(text) => {
+                this.handleUpdateState("confirm", text);
+              }}
+              value={this.state.confirm}
+            />
+          </View>
           <View style={styles.button__container}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              onPress={this.handleOnSubmit}
+              style={styles.button}
+            >
               <Text style={styles.button__text}>Register</Text>
             </TouchableOpacity>
           </View>
@@ -117,7 +205,7 @@ const styles = StyleSheet.create({
     marginVertical: 0,
     borderBottomWidth: 1,
     borderColor: "whitesmoke",
-    paddingBottom: 20,
+    paddingBottom: 15,
   },
   input__container: {
     flexDirection: "row",
@@ -151,7 +239,7 @@ const styles = StyleSheet.create({
   },
   button__container: {
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 10,
   },
   button: {
     backgroundColor: "#f7027d",
@@ -159,3 +247,10 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
 });
+
+const mapStateToProp = (state) => {
+  return { auth: state };
+};
+export default connect(mapStateToProp, { registrationForm, registerError })(
+  Register
+);
